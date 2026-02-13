@@ -392,7 +392,7 @@ if (!entered) {
               <Card>
                 <SectionTitle
                   title="Why I love you"
-                  subtitle="Because you’re you. That’s enough."
+                  subtitle="Because you are you. That is enough."
                 />
                 <div className="grid gap-2">
                   {reasons.map((r, i) => (

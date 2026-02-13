@@ -251,7 +251,7 @@ if (!entered) {
                 className="w-full rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-4 text-sm font-bold shadow-lg shadow-pink-500/25"
                 type="button"
               >
-                Click humble
+                Open My Love
               </motion.button>
 
             </div>

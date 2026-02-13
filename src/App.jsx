@@ -99,6 +99,8 @@ function SectionTitle({ title, subtitle }) {
 
 export default function App() {
   const [entered, setEntered] = useState(false);
+  const [showQuote, setShowQuote] = useState(false);
+
   // ✨ EDIT THESE (your lover details)
   const loverName = "Maha";
   const yourName = "Kirubakaran";
@@ -142,6 +144,12 @@ export default function App() {
       body:
         "Let’s be the kind of love that feels like home. Wherever we go, I want it to be with you.",
     },
+    {
+      title: (<><div className="flex flex-row justify-start items-center gap-3"> Why live in the life <Sparkles size={20} className="text-pink-300" /></div></>),
+
+      body:
+        "I don't want a perfect life - I want a life with you.",
+    },
   ];
 
   const [openLetter, setOpenLetter] = useState(null);
@@ -154,11 +162,13 @@ export default function App() {
   const yesScale = clamp(1 + noCount * 0.12, 1, 1.85);
 
   const scrollToProposal = () => {
-  document.getElementById("proposal")?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-};
+    setShowQuote(true); // reveal quote
+    document.getElementById("proposal")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
 
 if (!entered) {
   return (
@@ -258,7 +268,7 @@ if (!entered) {
     <div className="min-h-screen bg-[#0b0610] text-white">
       {/* Background */}
       <div className="relative">
-        <div className="absolute inset-0 bg-[radial-gradient(700px_circle_at_15%_10%,rgba(236,72,153,.25),transparent_55%),radial-gradient(700px_circle_at_85%_25%,rgba(244,63,94,.22),transparent_55%),radial-gradient(800px_circle_at_50%_100%,rgba(168,85,247,.22),transparent_60%)] animate-[romanticMove_1s_ease_infinite]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_circle_at_15%_10%,rgba(236,72,153,.25),transparent_55%),radial-gradient(700px_circle_at_85%_25%,rgba(244,63,94,.22),transparent_55%),radial-gradient(800px_circle_at_50%_100%,rgba(168,85,247,.22),transparent_60%)]" />
         <FloatingHearts />
 
         {/* Top */}
@@ -303,14 +313,14 @@ if (!entered) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
               >
-                <Card className="relative overflow-hidden">
+                <Card className="relative z-10 overflow-hidden">
                   <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-pink-500/20 blur-3xl " />
                   <div className="absolute -left-20 -bottom-24 h-64 w-64 rounded-full bg-violet-500/20 blur-3xl" />
 
                   <SectionTitle title="My message for you" subtitle="Short, sweet, honest." />
                   <p className="text-white/80">{note}</p>
 
-                  <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="relative mt-6 grid grid-cols-2 gap-3">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
@@ -348,7 +358,7 @@ if (!entered) {
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
                       className="rounded-2xl border border-white/10 bg-gradient-to-r from-pink-500/40 to-violet-500/40 px-4 py-3 text-center text-sm font-semibold text-white hover:from-pink-500/50 hover:to-violet-500/50"
-                      onClick={scrollToProposal}
+                      onClick={ ()=>setOpenLetter(3)}
                     >
                       <div className="flex flex-row justify-center items-center gap-3">
                        Final question 
